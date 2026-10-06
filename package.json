@@ -1,0 +1,46 @@
+{
+  "name": "elys",
+  "version": "1.0.0",
+  "description": "ELYS — Advanced Task Scheduler",
+  "author": "Adrián Palma",
+  "type": "module",
+  "scripts": {
+    "dev:server": "tsx server/src/index.ts",
+    "dev:client": "npm --prefix client run dev",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
+    "build:client": "npm --prefix client run build",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build": "npm run build:client && npm run build:server",
+    "lint": "npm --prefix client run lint",
+    "test:security": "tsx scripts/test-hardening-security.ts",
+    "test:ssrf": "tsx scripts/test-ssrf.ts",
+    "test": "tsx scripts/test-hardening-security.ts && tsx scripts/test-ssrf.ts",
+    "start": "node server/dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "cron-parser": "^5.10.1",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^10.0.15"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.6.4",
+    "@types/nodemailer": "^8.0.2",
+    "concurrently": "^10.0.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

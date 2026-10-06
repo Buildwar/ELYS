@@ -1,0 +1,35 @@
+version: '3.8'
+
+# ========================================================
+# ELYS — Advanced Task Scheduler
+# Production Stack for Portainer / Docker Compose
+# Developer: Adrián Palma
+# ========================================================
+
+services:
+  elys:
+    image: ghcr.io/adrianpalma360-create/elys:latest
+    container_name: elys
+    restart: unless-stopped
+    ports:
+      - "${PORT:-4800}:4800"
+    environment:
+      - NODE_ENV=production
+      - PORT=4800
+      - DATA_DIR=/data
+      - JWT_SECRET=${JWT_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - elys_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4800/api/system/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  elys_data:
+    name: elys_data

@@ -1,0 +1,370 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "tasks": "Tareas",
+    "calendar": "Programación",
+    "destinations": "Destinos",
+    "templates": "Plantillas",
+    "credentials": "Credenciales",
+    "executions": "Ejecuciones",
+    "categories": "Sistemas / Categorías",
+    "users": "Usuarios",
+    "settings": "Configuración",
+    "about": "Acerca de",
+    "logout": "Cerrar Sesión",
+    "collapse": "Colapsar menú",
+    "expand": "Expandir menú",
+    "groupTasks": "TAREAS",
+    "groupInfrastructure": "INFRAESTRUCTURA",
+    "groupAutomation": "AUTOMATIZACIÓN",
+    "groupOperations": "OPERACIONES",
+    "groupSystem": "SISTEMA"
+  },
+  "roles": {
+    "admin": "Administrador",
+    "operator": "Operador",
+    "user": "Usuario"
+  },
+  "dashboard": {
+    "title": "Centro de Control de Automatización",
+    "subtitle": "¿Qué quiero ejecutar, cuándo quiero ejecutarlo y sobre qué equipo?",
+    "upcomingTitle": "Próximas Ejecuciones Planificadas",
+    "upcomingSubtitle": "Línea temporal de tareas y destinos de ejecución",
+    "recentTitle": "Ejecuciones Recientes Procesadas",
+    "recentSubtitle": "Último historial de ejecuciones sobre equipos",
+    "quickActionsTitle": "Acciones Rápidas",
+    "newTask": "Nueva Tarea",
+    "runTask": "Ejecutar Tarea",
+    "newDestination": "Nuevo Destino",
+    "viewCalendar": "Ver Calendario",
+    "viewExecutions": "Ver Ejecuciones",
+    "summaryTitle": "Estado del Sistema",
+    "activeTasks": "Tareas Activas",
+    "disabledTasks": "Tareas Desactivadas",
+    "activeDestinations": "Destinos Operativos",
+    "recentExecutions": "Ejecuciones Totales",
+    "failedExecutions": "Fallidas",
+    "noUpcoming": "No hay tareas programadas para las próximas horas.",
+    "noRecent": "Aún no se han registrado ejecuciones sobre equipos.",
+    "noAttention": "Todos los equipos y tareas operan con normalidad.",
+    "attentionTitle": "Tareas que Requieren Atención",
+    "target": "Destino",
+    "time": "Hora",
+    "task": "Tarea",
+    "state": "Estado"
+  },
+  "destinations": {
+    "title": "Destinos de Ejecución",
+    "subtitle": "Equipos y servidores sobre los que ELYS ejecuta tareas automatizadas",
+    "create": "Nuevo Destino",
+    "searchPlaceholder": "Buscar por nombre, hostname, IP, OS o etiqueta...",
+    "filterAll": "Todos los Sistemas",
+    "filterCategory": "Todas las Categorías",
+    "systems": {
+      "windows_server": "Windows Server",
+      "windows_desktop": "Windows Desktop",
+      "linux": "Linux",
+      "bsd": "BSD",
+      "other": "Otros"
+    },
+    "methods": {
+      "winrm": "WinRM",
+      "ps_remoting": "PowerShell Remoting",
+      "ssh": "SSH",
+      "local": "Local"
+    },
+    "columns": {
+      "name": "Equipo / Host",
+      "system": "Sistema Operativo",
+      "category": "Categoría",
+      "connection": "Conexión",
+      "credential": "Credencial",
+      "tasks": "Tareas",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "modal": {
+      "createTitle": "Registrar Nuevo Destino",
+      "editTitle": "Editar Destino de Ejecución",
+      "name": "Nombre Identificador",
+      "namePlaceholder": "Ej: WIN-SRV-01, WEB-SRV-01",
+      "hostname": "Hostname / FQDN",
+      "hostnamePlaceholder": "winsrv01.corp.local o web01.dmz",
+      "ip": "Dirección IP",
+      "systemType": "Clasificación de Sistema",
+      "osName": "Distribución / Sistema Operativo",
+      "osNamePlaceholder": "Ej: Windows Server 2025, Ubuntu, Rocky Linux",
+      "osVersion": "Versión / Edición",
+      "osVersionPlaceholder": "Ej: Datacenter, 24.04 LTS, 9.4",
+      "category": "Categoría de Equipo",
+      "connectionMethod": "Método de Conexión",
+      "credential": "Credencial Asociada",
+      "noCredential": "Sin credencial asociada",
+      "port": "Puerto de Conexión",
+      "domain": "Dominio (Opcional)",
+      "description": "Descripción del Servidor",
+      "tags": "Etiquetas (separadas por coma)",
+      "active": "Equipo activo para ejecuciones",
+      "save": "Guardar Destino",
+      "cancel": "Cancelar",
+      "test": "Probar Conexión"
+    },
+    "deleteConfirmTitle": "¿Eliminar Destino?",
+    "deleteConfirmMessage": "¿Estás seguro de que deseas eliminar el destino \"{{name}}\"? Las tareas que lo tengan asignado perderán esta vinculación."
+  },
+  "templates": {
+    "title": "Plantillas de Tareas",
+    "subtitle": "Estructuras preconfiguradas para desplegar tareas en servidores rápidamente",
+    "create": "Nueva Plantilla",
+    "useTemplate": "Crear Tarea con esta Plantilla",
+    "modal": {
+      "createTitle": "Crear Plantilla",
+      "editTitle": "Editar Plantilla",
+      "name": "Nombre de la Plantilla",
+      "namePlaceholder": "Ej: Backup PowerShell Windows Server",
+      "description": "Propósito de la Plantilla",
+      "systemType": "Sistema Compatible",
+      "commandType": "Tipo de Comando",
+      "commandTemplate": "Comando o Script Base",
+      "defaultTimeout": "Timeout por Defecto (segundos)",
+      "tags": "Etiquetas",
+      "save": "Guardar Plantilla",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirmTitle": "¿Eliminar Plantilla?",
+    "deleteConfirmMessage": "¿Deseas eliminar la plantilla \"{{name}}\"?"
+  },
+  "credentials": {
+    "title": "Almacén de Credenciales",
+    "subtitle": "Credenciales reutilizables para ejecución remota segura sobre destinos",
+    "create": "Nueva Credencial",
+    "types": {
+      "winrm_password": "WinRM / Windows Password",
+      "ssh_password": "SSH Password (Linux)",
+      "ssh_key": "Clave Privada SSH",
+      "service_account": "Cuenta de Servicio",
+      "token": "Token / Secreto de API"
+    },
+    "modal": {
+      "createTitle": "Registrar Credencial",
+      "editTitle": "Editar Credencial",
+      "name": "Nombre Identificador",
+      "namePlaceholder": "Ej: Windows - Administración, Linux - Automatización",
+      "type": "Tipo de Autenticación",
+      "username": "Usuario / Principal",
+      "usernamePlaceholder": "administrator, root, svc_backup",
+      "secret": "Contraseña / Clave Privada",
+      "domain": "Dominio Active Directory (Opcional)",
+      "description": "Descripción / Ámbito de Uso",
+      "save": "Guardar Credencial",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirmTitle": "¿Eliminar Credencial?",
+    "deleteConfirmMessage": "¿Deseas eliminar la credencial \"{{name}}\"?"
+  },
+  "tasks": {
+    "title": "Gestión de Tareas",
+    "subtitle": "Creación, organización y asignación de tareas sobre destinos",
+    "createTask": "Nueva Tarea",
+    "searchPlaceholder": "Buscar tarea por nombre, descripción o etiqueta...",
+    "filterCategory": "Todas las Categorías",
+    "filterStatus": "Todos los Estados",
+    "filterType": "Todos los Tipos",
+    "filterDestination": "Todos los Destinos",
+    "active": "Activa",
+    "disabled": "Desactivada",
+    "status": {
+      "active": "Activa",
+      "disabled": "Desactivada",
+      "paused": "Pausada",
+      "success": "Correcta",
+      "failed": "Fallida",
+      "running": "Ejecutando",
+      "pending": "Pendiente",
+      "cancelled": "Cancelada"
+    },
+    "commandTypes": {
+      "powershell": "PowerShell",
+      "cmd": "CMD (Batch)",
+      "bash": "Bash (Shell)",
+      "script": "Script",
+      "http": "HTTP Webhook"
+    },
+    "scheduleTypes": {
+      "interval": "Intervalo recurrente",
+      "hourly": "Cada hora",
+      "daily": "Diario",
+      "weekly": "Semanal",
+      "monthly": "Mensual",
+      "cron": "Expresión Cron",
+      "once": "Una sola vez"
+    },
+    "columns": {
+      "name": "Tarea",
+      "destinations": "Destino(s)",
+      "category": "Categoría",
+      "schedule": "Programación",
+      "nextRun": "Próxima Ejecución",
+      "lastRun": "Última Ejecución",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "run": "Ejecutar ahora",
+      "edit": "Editar tarea",
+      "duplicate": "Duplicar",
+      "delete": "Eliminar",
+      "activate": "Activar",
+      "deactivate": "Desactivar"
+    },
+    "noTasksFound": "No se encontraron tareas con los filtros aplicados.",
+    "modal": {
+      "createTitle": "Crear Nueva Tarea",
+      "editTitle": "Editar Tarea",
+      "name": "Nombre de la Tarea",
+      "namePlaceholder": "Ej: Backup SQL, Limpieza temporal",
+      "description": "Descripción",
+      "category": "Categoría",
+      "targetType": "Destinos de Ejecución",
+      "selectDestinations": "Selecciona los equipos destino",
+      "credential": "Credencial de Ejecución",
+      "commandType": "Tipo de Comando / Intérprete",
+      "command": "Comando o Script",
+      "scheduleType": "Frecuencia de Programación",
+      "scheduleExpression": "Horario / Expresión",
+      "timezone": "Zona Horaria",
+      "timeoutSeconds": "Timeout (segundos)",
+      "onError": "Comportamiento ante error",
+      "active": "Activar inmediatamente",
+      "cancel": "Cancelar",
+      "save": "Guardar Tarea"
+    },
+    "deleteConfirmTitle": "¿Eliminar Tarea?",
+    "deleteConfirmMessage": "¿Estás seguro de que deseas eliminar la tarea \"{{name}}\"? Esta acción borrará también su historial de ejecuciones."
+  },
+  "calendar": {
+    "title": "Programación y Calendario",
+    "subtitle": "Vista temporal de ejecuciones programadas y reprogramación visual",
+    "reschedule": "Mover / Reprogramar Horario",
+    "noScheduled": "No hay ejecuciones programadas en esta franja."
+  },
+  "executions": {
+    "title": "Historial de Ejecuciones",
+    "subtitle": "Auditoría completa de ejecuciones por equipo, duración y resultado",
+    "filterAll": "Todos los estados",
+    "columns": {
+      "task": "Tarea",
+      "destination": "Destino",
+      "trigger": "Activador",
+      "status": "Estado",
+      "startedAt": "Inicio",
+      "duration": "Duración",
+      "exitCode": "Código",
+      "actions": "Detalles"
+    },
+    "viewDetails": "Ver Salida y Registro",
+    "cancelExecution": "Cancelar Ejecución",
+    "modal": {
+      "title": "Detalle de Ejecución",
+      "destinationLabel": "Equipo Destino",
+      "outputLabel": "Salida Estándar (stdout)",
+      "errorLabel": "Salida de Error (stderr)",
+      "close": "Cerrar"
+    }
+  },
+  "categories": {
+    "title": "Sistemas y Categorías de Destino",
+    "subtitle": "Estructura organizativa por tipo de sistema operativo (Windows Server, Linux, BSD, Desktop, Otros)",
+    "createCategory": "Nueva Categoría",
+    "name": "Nombre",
+    "description": "Descripción",
+    "color": "Color",
+    "taskCount": "Tareas",
+    "modal": {
+      "createTitle": "Crear Categoría",
+      "editTitle": "Editar Categoría",
+      "save": "Guardar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirmTitle": "¿Eliminar Categoría?",
+    "deleteConfirmMessage": "¿Deseas eliminar la categoría \"{{name}}\"?"
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Cuentas autorizadas, roles y permisos de acceso a ELYS",
+    "createUser": "Nuevo Usuario",
+    "username": "Usuario",
+    "email": "Email",
+    "role": "Rol",
+    "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "modal": {
+      "createTitle": "Crear Usuario",
+      "editTitle": "Editar Usuario",
+      "save": "Guardar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirmTitle": "¿Eliminar Usuario?",
+    "deleteConfirmMessage": "¿Deseas eliminar permanentemente al usuario \"{{username}}\"?"
+  },
+  "settings": {
+    "title": "Configuración del Sistema",
+    "subtitle": "Apariencia, notificaciones, copias de seguridad y opciones administrativas",
+    "tabs": {
+      "appearance": "Apariencia",
+      "preferences": "Preferencias",
+      "notifications": "Notificaciones y Alertas",
+      "backup": "Backup y Restore",
+      "general": "General",
+      "security": "Seguridad",
+      "audit": "Registro de Auditoría"
+    },
+    "appearance": {
+      "themeColor": "Acento de Color Cyberpunk",
+      "themeDesc": "Selecciona la paleta luminosa principal",
+      "themes": {
+        "cyan": "Cyber Cyan",
+        "emerald": "Matrix Emerald",
+        "amber": "Solar Amber",
+        "magenta": "Synthwave Magenta",
+        "violet": "Neon Violet"
+      }
+    }
+  },
+  "about": {
+    "title": "Acerca de ELYS",
+    "subtitle": "Información oficial del sistema y especificaciones de la plataforma",
+    "developedBy": "Desarrollado por",
+    "developerName": "Adrián Palma",
+    "description": "ELYS es una aplicación web moderna para la programación, organización y gestión avanzada de tareas programadas con estética cyberpunk limpia y profesional.",
+    "versionTitle": "Versión",
+    "systemInfo": "Información del Entorno",
+    "engine": "Motor de Tareas",
+    "database": "Persistencia de Datos",
+    "nodeVersion": "Entorno de Ejecución",
+    "uptime": "Tiempo Activo",
+    "platform": "Sistema Operativo",
+    "license": "Licencia"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "search": "Buscar...",
+    "actions": "Acciones",
+    "success": "Operación completada con éxito",
+    "error": "Ha ocurrido un error inesperado",
+    "never": "Nunca"
+  },
+  "auth": {
+    "welcome": "Bienvenido a ELYS",
+    "loginSubtitle": "Centro avanzado de automatización y programación de tareas",
+    "username": "Usuario o Email",
+    "password": "Contraseña",
+    "loginButton": "Iniciar Sesión",
+    "invalidCredentials": "Credenciales inválidas"
+  }
+}

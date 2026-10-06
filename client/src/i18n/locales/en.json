@@ -1,0 +1,370 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "tasks": "Tasks",
+    "calendar": "Schedule",
+    "destinations": "Destinations",
+    "templates": "Templates",
+    "credentials": "Credentials",
+    "executions": "Executions",
+    "categories": "Systems / Categories",
+    "users": "Users",
+    "settings": "Settings",
+    "about": "About",
+    "logout": "Sign Out",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "groupTasks": "TASKS",
+    "groupInfrastructure": "INFRASTRUCTURE",
+    "groupAutomation": "AUTOMATION",
+    "groupOperations": "OPERATIONS",
+    "groupSystem": "SYSTEM"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "operator": "Operator",
+    "user": "User"
+  },
+  "dashboard": {
+    "title": "Task Automation Control Center",
+    "subtitle": "What to execute, when to execute it, and on which machine?",
+    "upcomingTitle": "Upcoming Planned Executions",
+    "upcomingSubtitle": "Timeline of tasks and execution destinations",
+    "recentTitle": "Recent Executions Processed",
+    "recentSubtitle": "Latest execution audit logs across target hosts",
+    "quickActionsTitle": "Quick Actions",
+    "newTask": "New Task",
+    "runTask": "Run Task",
+    "newDestination": "New Destination",
+    "viewCalendar": "View Schedule",
+    "viewExecutions": "View Executions",
+    "summaryTitle": "System State",
+    "activeTasks": "Active Tasks",
+    "disabledTasks": "Disabled Tasks",
+    "activeDestinations": "Active Hosts",
+    "recentExecutions": "Total Executions",
+    "failedExecutions": "Failed",
+    "noUpcoming": "No upcoming tasks scheduled for the next hours.",
+    "noRecent": "No executions recorded across targets yet.",
+    "noAttention": "All tasks and destinations are operational.",
+    "attentionTitle": "Tasks Requiring Attention",
+    "target": "Target",
+    "time": "Time",
+    "task": "Task",
+    "state": "Status"
+  },
+  "destinations": {
+    "title": "Execution Destinations",
+    "subtitle": "Servers and machines where ELYS executes automated tasks",
+    "create": "New Destination",
+    "searchPlaceholder": "Search by name, hostname, IP, OS or tag...",
+    "filterAll": "All Systems",
+    "filterCategory": "All Categories",
+    "systems": {
+      "windows_server": "Windows Server",
+      "windows_desktop": "Windows Desktop",
+      "linux": "Linux",
+      "bsd": "BSD",
+      "other": "Others"
+    },
+    "methods": {
+      "winrm": "WinRM",
+      "ps_remoting": "PowerShell Remoting",
+      "ssh": "SSH",
+      "local": "Local"
+    },
+    "columns": {
+      "name": "Host / Machine",
+      "system": "Operating System",
+      "category": "Category",
+      "connection": "Connection",
+      "credential": "Credential",
+      "tasks": "Tasks",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "modal": {
+      "createTitle": "Register New Destination",
+      "editTitle": "Edit Execution Destination",
+      "name": "Target Name",
+      "namePlaceholder": "E.g.: WIN-SRV-01, WEB-SRV-01",
+      "hostname": "Hostname / FQDN",
+      "hostnamePlaceholder": "winsrv01.corp.local or web01.dmz",
+      "ip": "IP Address",
+      "systemType": "System Classification",
+      "osName": "OS / Distribution",
+      "osNamePlaceholder": "E.g.: Windows Server 2025, Ubuntu, Rocky Linux",
+      "osVersion": "Version / Edition",
+      "osVersionPlaceholder": "E.g.: Datacenter, 24.04 LTS, 9.4",
+      "category": "Machine Category",
+      "connectionMethod": "Connection Protocol",
+      "credential": "Associated Credential",
+      "noCredential": "No credential linked",
+      "port": "Port",
+      "domain": "Domain (Optional)",
+      "description": "Server Purpose / Description",
+      "tags": "Tags (comma separated)",
+      "active": "Active for task execution",
+      "save": "Save Destination",
+      "cancel": "Cancel",
+      "test": "Test Connection"
+    },
+    "deleteConfirmTitle": "Delete Destination?",
+    "deleteConfirmMessage": "Are you sure you want to delete destination \"{{name}}\"? Associated tasks will lose this target mapping."
+  },
+  "templates": {
+    "title": "Task Templates",
+    "subtitle": "Pre-configured templates to rapidly deploy recurring jobs on servers",
+    "create": "New Template",
+    "useTemplate": "Create Task from Template",
+    "modal": {
+      "createTitle": "Create Template",
+      "editTitle": "Edit Template",
+      "name": "Template Name",
+      "namePlaceholder": "E.g.: Backup PowerShell Windows Server",
+      "description": "Template Purpose",
+      "systemType": "Compatible System",
+      "commandType": "Command Type",
+      "commandTemplate": "Base Command or Script",
+      "defaultTimeout": "Default Timeout (seconds)",
+      "tags": "Tags",
+      "save": "Save Template",
+      "cancel": "Cancel"
+    },
+    "deleteConfirmTitle": "Delete Template?",
+    "deleteConfirmMessage": "Delete template \"{{name}}\"?"
+  },
+  "credentials": {
+    "title": "Credential Vault",
+    "subtitle": "Reusable credentials for secure remote execution across target hosts",
+    "create": "New Credential",
+    "types": {
+      "winrm_password": "WinRM / Windows Password",
+      "ssh_password": "SSH Password (Linux)",
+      "ssh_key": "SSH Private Key",
+      "service_account": "Service Account",
+      "token": "API Token / Secret"
+    },
+    "modal": {
+      "createTitle": "Register Credential",
+      "editTitle": "Edit Credential",
+      "name": "Credential Name",
+      "namePlaceholder": "E.g.: Windows - Domain Admin, Linux - Automation",
+      "type": "Authentication Type",
+      "username": "Username / Principal",
+      "usernamePlaceholder": "administrator, root, svc_backup",
+      "secret": "Password / Private Key",
+      "domain": "Active Directory Domain (Optional)",
+      "description": "Description / Scope",
+      "save": "Save Credential",
+      "cancel": "Cancel"
+    },
+    "deleteConfirmTitle": "Delete Credential?",
+    "deleteConfirmMessage": "Delete credential \"{{name}}\"?"
+  },
+  "tasks": {
+    "title": "Task Management",
+    "subtitle": "Create, organize and assign tasks across target destinations",
+    "createTask": "New Task",
+    "searchPlaceholder": "Search task by name, description or tag...",
+    "filterCategory": "All Categories",
+    "filterStatus": "All Statuses",
+    "filterType": "All Types",
+    "filterDestination": "All Destinations",
+    "active": "Active",
+    "disabled": "Disabled",
+    "status": {
+      "active": "Active",
+      "disabled": "Disabled",
+      "paused": "Paused",
+      "success": "Success",
+      "failed": "Failed",
+      "running": "Running",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "commandTypes": {
+      "powershell": "PowerShell",
+      "cmd": "CMD (Batch)",
+      "bash": "Bash (Shell)",
+      "script": "Script",
+      "http": "HTTP Webhook"
+    },
+    "scheduleTypes": {
+      "interval": "Recurring Interval",
+      "hourly": "Hourly",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "cron": "Cron Expression",
+      "once": "One-time"
+    },
+    "columns": {
+      "name": "Task",
+      "destinations": "Destination(s)",
+      "category": "Category",
+      "schedule": "Schedule",
+      "nextRun": "Next Execution",
+      "lastRun": "Last Execution",
+      "actions": "Actions"
+    },
+    "actions": {
+      "run": "Run now",
+      "edit": "Edit task",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "activate": "Activate",
+      "deactivate": "Deactivate"
+    },
+    "noTasksFound": "No tasks match the selected filters.",
+    "modal": {
+      "createTitle": "Create New Task",
+      "editTitle": "Edit Task",
+      "name": "Task Name",
+      "namePlaceholder": "E.g.: Backup SQL, Cleanup temp files",
+      "description": "Description",
+      "category": "Category",
+      "targetType": "Execution Destinations",
+      "selectDestinations": "Select target hosts",
+      "credential": "Execution Credential",
+      "commandType": "Command Type / Interpreter",
+      "command": "Command or Script",
+      "scheduleType": "Schedule Type",
+      "scheduleExpression": "Schedule Expression",
+      "timezone": "Timezone",
+      "timeoutSeconds": "Timeout (seconds)",
+      "onError": "On error action",
+      "active": "Activate immediately",
+      "cancel": "Cancel",
+      "save": "Save Task"
+    },
+    "deleteConfirmTitle": "Delete Task?",
+    "deleteConfirmMessage": "Are you sure you want to delete task \"{{name}}\"? This will also erase its execution history."
+  },
+  "calendar": {
+    "title": "Task Schedule & Timeline",
+    "subtitle": "Timeline representation of planned runs and visual rescheduling",
+    "reschedule": "Move / Reschedule Time",
+    "noScheduled": "No executions scheduled in this slot."
+  },
+  "executions": {
+    "title": "Execution History",
+    "subtitle": "Complete audit trail of executions by machine, duration and outcome",
+    "filterAll": "All statuses",
+    "columns": {
+      "task": "Task",
+      "destination": "Destination",
+      "trigger": "Trigger",
+      "status": "Status",
+      "startedAt": "Started At",
+      "duration": "Duration",
+      "exitCode": "Code",
+      "actions": "Details"
+    },
+    "viewDetails": "View Output & Log",
+    "cancelExecution": "Cancel Execution",
+    "modal": {
+      "title": "Execution Details",
+      "destinationLabel": "Destination Host",
+      "outputLabel": "Standard Output (stdout)",
+      "errorLabel": "Standard Error (stderr)",
+      "close": "Close"
+    }
+  },
+  "categories": {
+    "title": "Systems and Destination Categories",
+    "subtitle": "Organizational structure by operating system category (Windows Server, Linux, BSD, Desktop, Others)",
+    "createCategory": "New Category",
+    "name": "Name",
+    "description": "Description",
+    "color": "Color",
+    "taskCount": "Tasks",
+    "modal": {
+      "createTitle": "Create Category",
+      "editTitle": "Edit Category",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "deleteConfirmTitle": "Delete Category?",
+    "deleteConfirmMessage": "Delete category \"{{name}}\"?"
+  },
+  "users": {
+    "title": "User Management",
+    "subtitle": "Authorized accounts, roles and privileges in ELYS",
+    "createUser": "New User",
+    "username": "Username",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "modal": {
+      "createTitle": "Create User",
+      "editTitle": "Edit User",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "deleteConfirmTitle": "Delete User?",
+    "deleteConfirmMessage": "Permanently delete user \"{{username}}\"?"
+  },
+  "settings": {
+    "title": "System Settings",
+    "subtitle": "Appearance, notifications, backups and administrative parameters",
+    "tabs": {
+      "appearance": "Appearance",
+      "preferences": "Preferences",
+      "notifications": "Notifications & Alerts",
+      "backup": "Backup & Restore",
+      "general": "General",
+      "security": "Security",
+      "audit": "Audit Log"
+    },
+    "appearance": {
+      "themeColor": "Cyberpunk Accent Color",
+      "themeDesc": "Select the luminous UI palette",
+      "themes": {
+        "cyan": "Cyber Cyan",
+        "emerald": "Matrix Emerald",
+        "amber": "Solar Amber",
+        "magenta": "Synthwave Magenta",
+        "violet": "Neon Violet"
+      }
+    }
+  },
+  "about": {
+    "title": "About ELYS",
+    "subtitle": "Official system specifications and platform architecture",
+    "developedBy": "Developed by",
+    "developerName": "Adrián Palma",
+    "description": "ELYS is a modern web application for advanced task scheduling, organization and management featuring a clean and professional cyberpunk aesthetic.",
+    "versionTitle": "Version",
+    "systemInfo": "Environment Information",
+    "engine": "Task Engine",
+    "database": "Data Persistence",
+    "nodeVersion": "Runtime Environment",
+    "uptime": "Uptime",
+    "platform": "Operating System",
+    "license": "License"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close",
+    "confirm": "Confirm",
+    "search": "Search...",
+    "actions": "Actions",
+    "success": "Operation completed successfully",
+    "error": "An unexpected error occurred",
+    "never": "Never"
+  },
+  "auth": {
+    "welcome": "Welcome to ELYS",
+    "loginSubtitle": "Advanced task automation and scheduling control console",
+    "username": "Username or Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "invalidCredentials": "Invalid credentials"
+  }
+}

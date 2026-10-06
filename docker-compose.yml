@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  elys:
+    image: elys:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: elys-task-scheduler
+    restart: unless-stopped
+    ports:
+      - "${PORT:-4800}:4800"
+    environment:
+      - NODE_ENV=production
+      - PORT=4800
+      - DATA_DIR=/data
+      - JWT_SECRET=${JWT_SECRET:-change_this_secret_in_production_2026}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - elys_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4800/api/system/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  elys_data:
+    name: elys_data

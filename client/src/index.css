@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Cyberpunk default theme (Cyber Cyan) */
+  --cyber-primary: #00f0ff;
+  --cyber-primary-rgb: 0, 240, 255;
+  --cyber-primary-hover: #33f3ff;
+  --cyber-accent: #7000ff;
+  --cyber-accent-rgb: 112, 0, 255;
+  --cyber-success: #00ff88;
+  --cyber-warning: #ffb800;
+  --cyber-danger: #ff0055;
+  --cyber-info: #00b8ff;
+
+  --cyber-bg: #07090e;
+  --cyber-surface: #0e131f;
+  --cyber-card: #131b2c;
+  --cyber-card-hover: #182238;
+  --cyber-border: #1e2b45;
+  --cyber-border-highlight: #2a3d60;
+
+  --cyber-text: #e2e8f0;
+  --cyber-text-muted: #8493a8;
+  --cyber-text-dim: #4d5b70;
+}
+
+[data-theme="emerald"] {
+  --cyber-primary: #00ff9d;
+  --cyber-primary-rgb: 0, 255, 157;
+  --cyber-primary-hover: #33ffb1;
+  --cyber-accent: #00b4d8;
+}
+
+[data-theme="amber"] {
+  --cyber-primary: #ffb703;
+  --cyber-primary-rgb: 255, 183, 3;
+  --cyber-primary-hover: #ffc433;
+  --cyber-accent: #fb8500;
+}
+
+[data-theme="magenta"] {
+  --cyber-primary: #ff007f;
+  --cyber-primary-rgb: 255, 0, 127;
+  --cyber-primary-hover: #ff3399;
+  --cyber-accent: #9d4edd;
+}
+
+[data-theme="violet"] {
+  --cyber-primary: #a855f7;
+  --cyber-primary-rgb: 168, 85, 247;
+  --cyber-primary-hover: #b873f8;
+  --cyber-accent: #00f0ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--cyber-bg);
+  color: var(--cyber-text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Cyberpunk Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-primary);
+}
+
+/* Glowing utilities */
+.glow-primary {
+  box-shadow: 0 0 15px rgba(var(--cyber-primary-rgb), 0.35);
+}
+
+.glow-border {
+  border-color: var(--cyber-primary) !important;
+  box-shadow: 0 0 12px rgba(var(--cyber-primary-rgb), 0.25);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 8px rgba(var(--cyber-primary-rgb), 0.6);
+}
+
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
