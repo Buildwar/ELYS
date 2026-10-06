@@ -19,9 +19,9 @@ import {
   ChevronRight,
   ChevronDown,
   Globe,
-  Zap,
   X,
 } from 'lucide-react';
+import { OrbitalSymbol } from '../brand/ElysLogo.js';
 
 interface SidebarProps {
   currentTab: string;
@@ -172,9 +172,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => handleSelect('dashboard')}
               onMouseEnter={(e) => showTooltip(e, 'ELYS — Control Center')}
               onMouseLeave={hideTooltip}
-              className="w-10 h-10 rounded-xl bg-[#0e1626] border border-[#1e2d48] hover:border-[var(--cyber-primary)] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md group"
+              className="w-10 h-10 rounded-xl bg-[#0e1626] border border-[#1e2d48] hover:border-[var(--cyber-primary)] flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md group p-1"
             >
-              <Zap className="w-5 h-5 text-[var(--cyber-primary)] transition-transform duration-300 group-hover:scale-110" />
+              <OrbitalSymbol size={26} className="transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,240,255,0.4)]" />
             </div>
 
             <button
@@ -194,12 +194,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => handleSelect('dashboard')}
               className="flex items-center gap-3 cursor-pointer group min-w-0"
             >
-              <div className="w-9 h-9 rounded-lg bg-[#0e1626] border border-[#1e2d48] group-hover:border-[var(--cyber-primary)] flex items-center justify-center relative transition-all duration-200 shrink-0 shadow-sm">
-                <Zap className="w-5 h-5 text-[var(--cyber-primary)] transition-transform duration-300 group-hover:scale-110" />
+              <div className="w-9 h-9 rounded-lg bg-[#0e1626] border border-[#1e2d48] group-hover:border-[var(--cyber-primary)] flex items-center justify-center relative transition-all duration-200 shrink-0 shadow-sm p-1">
+                <OrbitalSymbol size={24} className="transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_6px_rgba(0,240,255,0.4)]" />
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="font-mono text-base font-black tracking-wider text-white flex items-center gap-1.5 leading-none">
-                  ELYS
+                  <span>ELY<span className="text-[var(--cyber-primary)] text-glow-primary">S</span></span>
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--cyber-primary)] animate-pulse" />
                 </span>
                 <span className="text-[9px] tracking-widest text-[#64748b] uppercase font-mono mt-0.5 truncate">

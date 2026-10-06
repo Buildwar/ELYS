@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 620" width="100%" height="100%" fill="none">
+  <!-- Monochrome White for Dark Background -->
+  <!-- Orbital Symbol -->
+  <g transform="translate(0, -30)">
+    <!-- Back Ring Arc -->
+    <path
+      d="M 40 250 A 210 135 0 0 1 460 250 L 418 250 A 168 95 0 0 0 82 250 Z"
+      fill="#ffffff"
+      opacity="0.4"
+      transform="rotate(-38 250 250)"
+    />
+
+    <!-- Core Sphere Outline & Body -->
+    <circle cx="250" cy="250" r="105" fill="#000000" stroke="#ffffff" stroke-width="3" />
+    <path
+      d="M 235 152 C 285 158, 335 195, 350 248 C 344 220, 320 180, 270 160 Z"
+      fill="#ffffff"
+      opacity="0.9"
+    />
+
+    <!-- Front Ring Arc -->
+    <path
+      d="M 40 250 A 210 135 0 0 0 460 250 L 418 250 A 168 95 0 0 1 82 250 Z"
+      fill="#ffffff"
+      transform="rotate(-38 250 250)"
+    />
+  </g>
+
+  <!-- Typography "E L Y S" -->
+  <g transform="translate(86, 470)" fill="#ffffff">
+    <!-- Letter E -->
+    <path d="M 0 0 L 46 0 L 46 11 L 13 11 L 13 23 L 40 23 L 40 34 L 13 34 L 13 46 L 46 46 L 46 57 L 0 57 Z" />
+    <!-- Letter L -->
+    <path d="M 94 0 L 107 0 L 107 46 L 140 46 L 140 57 L 94 57 Z" />
+    <!-- Letter Y -->
+    <path d="M 188 0 L 203 0 L 217 24 L 231 0 L 246 0 L 224 35 L 224 57 L 210 57 L 210 35 Z" />
+    <!-- Letter S -->
+    <path d="M 314 0 C 323 0, 328 5, 328 14 L 314 14 C 314 10, 312 8, 306 8 L 293 8 C 286 8, 283 11, 283 16 C 283 23, 288 26, 298 28 L 307 30 C 320 33, 328 38, 328 47 C 328 54, 321 57, 308 57 L 287 57 C 278 57, 274 52, 274 43 L 288 43 C 288 47, 291 49, 298 49 L 310 49 C 314 49, 316 47, 316 43 C 316 38, 311 35, 301 33 L 293 31 C 280 28, 272 23, 272 14 C 272 5, 280 0, 294 0 Z" />
+  </g>
+
+  <!-- Subtitle -->
+  <text
+    x="250"
+    y="575"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    font-size="14.5"
+    font-weight="700"
+    letter-spacing="0.32em"
+    fill="#ffffff"
+    opacity="0.8"
+  >
+    ADVANCED TASK SCHEDULER
+  </text>
+</svg>

@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Background subtle ambient glow -->
+    <radialGradient id="ambGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.18" />
+      <stop offset="60%" stop-color="#0066ff" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Deep Void Sphere Base -->
+    <radialGradient id="sphereCore" cx="42%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#0e223d" />
+      <stop offset="35%" stop-color="#071326" />
+      <stop offset="70%" stop-color="#040914" />
+      <stop offset="100%" stop-color="#010308" />
+    </radialGradient>
+
+    <!-- Sphere Specular Highlight (Upper Right Arc) -->
+    <radialGradient id="sphereSpecular" cx="68%" cy="32%" r="40%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="25%" stop-color="#7dd3fc" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Inner Ambient Rim Glow (Lower Left) -->
+    <radialGradient id="sphereRimGlow" cx="30%" cy="75%" r="45%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.55" />
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Chrome Outer Ring Metallic Gradient -->
+    <linearGradient id="chromeRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="18%" stop-color="#e2e8f0" />
+      <stop offset="35%" stop-color="#94a3b8" />
+      <stop offset="52%" stop-color="#334155" />
+      <stop offset="68%" stop-color="#64748b" />
+      <stop offset="82%" stop-color="#cbd5e1" />
+      <stop offset="92%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#93c5fd" />
+    </linearGradient>
+
+    <!-- Chrome Ring Bevel / Inner Specular -->
+    <linearGradient id="ringBevel" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#0f172a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Electric Cyan Energy Orbit -->
+    <linearGradient id="energyBeam" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.95" />
+      <stop offset="30%" stop-color="#00d4ff" stop-opacity="0.75" />
+      <stop offset="70%" stop-color="#0066ff" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Intense Flare Point Gradient -->
+    <radialGradient id="flareGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#67e8f9" stop-opacity="0.9" />
+      <stop offset="55%" stop-color="#00f0ff" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Filters for Glow & Neon Energy -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur1" />
+      <feGaussianBlur stdDeviation="15" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Aura -->
+  <circle cx="250" cy="250" r="230" fill="url(#ambGlow)" />
+
+  <!-- Back Layer of Energy Orbit (Behind the Sphere) -->
+  <g transform="rotate(-38 250 250)">
+    <path
+      d="M 50 250 A 200 125 0 0 1 450 250"
+      fill="none"
+      stroke="url(#energyBeam)"
+      stroke-width="5"
+      stroke-linecap="round"
+      filter="url(#neonGlow)"
+      opacity="0.75"
+    />
+    <path
+      d="M 65 250 A 185 110 0 0 1 435 250"
+      fill="none"
+      stroke="#00f0ff"
+      stroke-width="1.8"
+      opacity="0.9"
+    />
+  </g>
+
+  <!-- Back Layer of Metallic Chrome Ring (Behind Sphere) -->
+  <g transform="rotate(-38 250 250)">
+    <!-- Back arc (top half in rotated coordinates) -->
+    <path
+      d="M 40 250 A 210 135 0 0 1 460 250 L 418 250 A 168 95 0 0 0 82 250 Z"
+      fill="url(#chromeRing)"
+      opacity="0.85"
+    />
+    <!-- Back rim highlight -->
+    <path
+      d="M 42 250 A 210 135 0 0 1 458 250"
+      fill="none"
+      stroke="url(#ringBevel)"
+      stroke-width="2.5"
+      opacity="0.6"
+    />
+  </g>
+
+  <!-- Central Obsidian / Dark Cosmic Sphere (Núcleo) -->
+  <g>
+    <!-- Base Sphere -->
+    <circle cx="250" cy="250" r="105" fill="url(#sphereCore)" />
+
+    <!-- Sphere Shadow Boundary -->
+    <circle cx="250" cy="250" r="105" fill="none" stroke="#0f172a" stroke-width="1.5" opacity="0.6" />
+
+    <!-- Sphere Lower-Left Cyan Ambient Reflection -->
+    <circle cx="250" cy="250" r="105" fill="url(#sphereRimGlow)" />
+
+    <!-- Sphere Upper-Right Specular Crescent Light -->
+    <circle cx="250" cy="250" r="105" fill="url(#sphereSpecular)" />
+
+    <!-- Specular Crescent Arch along perimeter -->
+    <path
+      d="M 235 152 C 285 158, 335 195, 350 248 C 344 220, 320 180, 270 160 Z"
+      fill="#ffffff"
+      opacity="0.8"
+      filter="url(#softGlow)"
+    />
+  </g>
+
+  <!-- Front Layer of Metallic Chrome Ring (Sculpted 3D Foreground Crescent) -->
+  <g transform="rotate(-38 250 250)">
+    <!-- Foreground thick metallic crescent (bottom half in rotated coordinates) -->
+    <path
+      d="M 40 250 A 210 135 0 0 0 460 250 L 418 250 A 168 95 0 0 1 82 250 Z"
+      fill="url(#chromeRing)"
+    />
+
+    <!-- Metallic Rim Inner Bevel Edge -->
+    <path
+      d="M 82 250 A 168 95 0 0 0 418 250"
+      fill="none"
+      stroke="url(#ringBevel)"
+      stroke-width="3"
+    />
+
+    <!-- Metallic Rim Outer Bright Reflection Edge -->
+    <path
+      d="M 40 250 A 210 135 0 0 0 460 250"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2.5"
+      opacity="0.9"
+    />
+
+    <!-- Cyan Light Sheen on Outer Metallic Lip -->
+    <path
+      d="M 70 270 A 210 135 0 0 0 440 260"
+      fill="none"
+      stroke="#00f0ff"
+      stroke-width="3.5"
+      filter="url(#softGlow)"
+      opacity="0.85"
+    />
+  </g>
+
+  <!-- Front Layer of Energy Orbit Beam -->
+  <g transform="rotate(-38 250 250)">
+    <!-- Glowing Front Particle Orbit -->
+    <path
+      d="M 45 250 A 205 130 0 0 0 455 250"
+      fill="none"
+      stroke="url(#energyBeam)"
+      stroke-width="6.5"
+      stroke-linecap="round"
+      filter="url(#neonGlow)"
+    />
+    <!-- Crisp Center Core of Orbit Beam -->
+    <path
+      d="M 45 250 A 205 130 0 0 0 455 250"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2"
+      opacity="0.9"
+    />
+  </g>
+
+  <!-- Dynamic Starburst Flares (Apex Light Bursts) -->
+  <!-- Top-Right Apex Burst -->
+  <g transform="translate(378, 148)">
+    <circle cx="0" cy="0" r="26" fill="url(#flareGlow)" />
+    <!-- Horizontal & Vertical Ray -->
+    <ellipse cx="0" cy="0" rx="22" ry="2.5" fill="#ffffff" filter="url(#softGlow)" />
+    <ellipse cx="0" cy="0" rx="2.5" ry="22" fill="#ffffff" filter="url(#softGlow)" />
+    <circle cx="0" cy="0" r="4" fill="#ffffff" />
+  </g>
+
+  <!-- Bottom-Left Trailing Light Flare -->
+  <g transform="translate(122, 352)">
+    <circle cx="0" cy="0" r="20" fill="url(#flareGlow)" />
+    <ellipse cx="0" cy="0" rx="16" ry="2" fill="#ffffff" transform="rotate(-35)" filter="url(#softGlow)" />
+    <circle cx="0" cy="0" r="3" fill="#ffffff" />
+  </g>
+</svg>

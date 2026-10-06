@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext.js';
-import { Zap, ShieldCheck, User, Lock, AlertCircle, ArrowRight, Eye, EyeOff, Sparkles } from 'lucide-react';
+import { User, Lock, AlertCircle, ArrowRight, Eye, EyeOff, Sparkles } from 'lucide-react';
+import { OrbitalSymbol } from '../components/brand/ElysLogo.js';
 
 export const InitialSetupView: React.FC = () => {
   const { setupAdmin } = useAuth();
@@ -58,9 +59,9 @@ export const InitialSetupView: React.FC = () => {
           <div className="p-8 sm:p-10">
             {/* Header / Logo */}
             <div className="flex flex-col items-center text-center mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-[#10192b] border border-[#243656] flex items-center justify-center mb-4 relative group shadow-lg">
-                <ShieldCheck className="w-8 h-8 text-[var(--cyber-primary)] animate-pulse" />
-                <div className="absolute -inset-1 rounded-2xl bg-[var(--cyber-primary)] opacity-20 blur-sm pointer-events-none" />
+              <div className="relative group mb-4">
+                <OrbitalSymbol size={76} className="drop-shadow-[0_0_20px_rgba(0,240,255,0.45)] transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute -inset-2 rounded-full bg-[var(--cyber-primary)] opacity-15 blur-lg pointer-events-none -z-10" />
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--cyber-primary)]/10 border border-[var(--cyber-primary)]/30 text-[var(--cyber-primary)] text-xs font-mono mb-2">
                 <Sparkles size={13} />

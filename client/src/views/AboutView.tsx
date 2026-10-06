@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../services/api.js';
 import { AboutData } from '../types/index.js';
 import {
-  Zap,
   User,
   HardDrive,
   RefreshCw,
 } from 'lucide-react';
+import { OrbitalSymbol } from '../components/brand/ElysLogo.js';
 
 export const AboutView: React.FC = () => {
   const { t } = useTranslation();
@@ -59,12 +59,12 @@ export const AboutView: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10">
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-[#10192b] border border-[#223555] flex items-center justify-center shrink-0 shadow-lg">
-              <Zap className="w-8 h-8 sm:w-9 sm:h-9 text-[var(--cyber-primary)]" />
+            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-[#10192b] border border-[#223555] flex items-center justify-center shrink-0 shadow-lg p-2">
+              <OrbitalSymbol size={54} className="drop-shadow-[0_0_14px_rgba(0,240,255,0.4)]" />
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-white flex items-center gap-3">
-                ELYS
+              <h1 className="text-2xl sm:text-3xl font-black font-mono tracking-wider text-white flex items-center gap-2">
+                <span>ELY<span className="text-[var(--cyber-primary)] text-glow-primary">S</span></span>
               </h1>
               <p className="text-xs font-mono text-[var(--cyber-primary)] tracking-widest uppercase mt-0.5 font-bold">
                 Advanced Task Scheduler

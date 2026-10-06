@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext.js';
-import { Zap, Lock, User, AlertCircle, ArrowRight } from 'lucide-react';
+import { Lock, User, AlertCircle, ArrowRight } from 'lucide-react';
+import { OrbitalSymbol } from '../components/brand/ElysLogo.js';
 
 export const LoginView: React.FC = () => {
   const { t } = useTranslation();
@@ -39,16 +40,16 @@ export const LoginView: React.FC = () => {
           <div className="h-1 bg-gradient-to-r from-transparent via-[var(--cyber-primary)] to-transparent" />
 
           <div className="p-8">
-            {/* Logo */}
+            {/* Official Orbital Logo */}
             <div className="flex flex-col items-center text-center mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-[#10192b] border border-[#243656] flex items-center justify-center mb-4 relative group shadow-lg">
-                <Zap className="w-8 h-8 text-[var(--cyber-primary)] animate-pulse" />
-                <div className="absolute -inset-1 rounded-2xl bg-[var(--cyber-primary)] opacity-20 blur-sm pointer-events-none" />
+              <div className="relative group mb-4">
+                <OrbitalSymbol size={80} className="drop-shadow-[0_0_20px_rgba(0,240,255,0.45)] transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute -inset-2 rounded-full bg-[var(--cyber-primary)] opacity-15 blur-lg pointer-events-none -z-10" />
               </div>
-              <h1 className="text-3xl font-black font-mono tracking-wider text-white flex items-center gap-2">
-                ELYS
+              <h1 className="text-3xl font-black font-mono tracking-wider text-white flex items-center gap-1.5">
+                <span>ELY<span className="text-[var(--cyber-primary)] text-glow-primary">S</span></span>
               </h1>
-              <p className="text-xs font-mono text-[#8493a8] tracking-widest uppercase mt-1">
+              <p className="text-[11px] font-mono text-[#8493a8] tracking-[0.25em] uppercase mt-1">
                 Advanced Task Scheduler
               </p>
             </div>
