@@ -8,7 +8,7 @@ version: '3.8'
 
 services:
   elys:
-    image: ghcr.io/adrianpalma360-create/elys:latest
+    image: ghcr.io/buildwar/elys:latest
     container_name: elys
     restart: unless-stopped
     ports:

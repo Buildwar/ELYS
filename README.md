@@ -55,7 +55,7 @@ Su filosofía fundamental es **"Simple por defecto, potente cuando lo necesitas"
 
 ## 🚢 Despliegue con Portainer (Recomendado)
 
-ELYS está preparado para desplegarse directamente desde Portainer utilizando el repositorio oficial de GitHub y la imagen en GitHub Container Registry (`ghcr.io`).
+ELYS está preparado para desplegarse directamente desde Portainer utilizando el repositorio oficial de GitHub y la imagen oficial en GitHub Container Registry (`ghcr.io/buildwar/elys:latest`).
 
 ### Pasos de Despliegue en Portainer:
 
@@ -63,25 +63,20 @@ ELYS está preparado para desplegarse directamente desde Portainer utilizando el
 2. En el menú lateral, dirígete a **Stacks** y haz clic en **Add stack**.
 3. Asigna un nombre al stack (por ejemplo: `elys`).
 4. En el método de compilación, selecciona **Repository**.
-5. Introduce la URL oficial del repositorio:
-   ```text
-   https://github.com/adrianpalma360-create/ELYS.git
-   ```
-6. En **Repository reference**, especifica: `refs/heads/main` (o deja en blanco para la rama por defecto).
-7. En **Compose path**, indica:
-   ```text
-   docker-compose.portainer.yml
-   ```
-8. En la sección **Environment variables**, define las variables de producción:
+5. Configura los parámetros del repositorio:
+   - **Repository URL**: `https://github.com/Buildwar/ELYS`
+   - **Repository reference**: `refs/heads/main`
+   - **Compose path**: `docker-compose.portainer.yml`
+6. En la sección **Environment variables**, define las variables de producción:
    - `JWT_SECRET`: Clave aleatoria robusta para firma de tokens (ej: generada con `openssl rand -hex 32`).
    - `ENCRYPTION_KEY`: Clave de cifrado maestro para credenciales (opcional; si se omite, se deriva con seguridad de `JWT_SECRET`).
    - `PORT`: `4800` (puerto por defecto).
    - `TZ`: Tu zona horaria (ej: `Europe/Madrid`, `UTC`, `America/New_York`).
-9. Haz clic en **Deploy the stack**.
-10. Una vez desplegado, accede desde tu navegador a:
-    ```
-    http://IP_DEL_SERVIDOR:4800
-    ```
+7. Haz clic en **Deploy the stack**.
+8. Una vez desplegado, accede desde tu navegador a:
+   ```
+   http://IP_DEL_SERVIDOR:4800
+   ```
 
 ---
 
@@ -91,7 +86,7 @@ Si prefieres ejecutar ELYS localmente mediante Docker:
 
 1. Clona el repositorio oficial:
    ```bash
-   git clone https://github.com/adrianpalma360-create/ELYS.git
+   git clone https://github.com/Buildwar/ELYS.git
    cd ELYS
    ```
 
@@ -167,4 +162,4 @@ npm test
 ## 📄 Licencia y Autoría
 
 Desarrollado y mantenido por **Adrián Palma**.
-Repositorio Oficial: [https://github.com/adrianpalma360-create/ELYS](https://github.com/adrianpalma360-create/ELYS)
+Repositorio Oficial: [https://github.com/Buildwar/ELYS](https://github.com/Buildwar/ELYS)

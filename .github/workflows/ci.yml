@@ -84,7 +84,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/adrianpalma360-create/elys
+          images: ghcr.io/buildwar/elys
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=raw,value=${{ steps.get_version.outputs.VERSION }},enable={{is_default_branch}}
