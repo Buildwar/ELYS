@@ -17,6 +17,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Globe,
   Zap,
   X,
@@ -46,6 +47,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
   // Floating tooltip state for collapsed mode
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
 
+  // Collapsible section state persisted locally (all sections expanded by default)
+  const STORAGE_KEY = 'elys_collapsed_sections';
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  const toggleSection = (sectionId: string) => {
+    setCollapsedSections((prev) => {
+      const next = { ...prev, [sectionId]: !prev[sectionId] };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // Safe fallback if localStorage is disabled or restricted
+      }
+      return next;
+    });
+  };
+
   const showTooltip = (e: React.MouseEvent<HTMLElement>, text: string) => {
     if (collapsed && !mobileOpen) {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -58,6 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   interface NavGroup {
+    id?: string;
     header?: string;
     items: {
       id: string;
@@ -73,6 +98,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ],
     },
     {
+      id: 'tasks',
       header: t('nav.groupTasks'),
       items: [
         { id: 'tasks', label: t('nav.tasks'), icon: ListTodo },
@@ -80,6 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ],
     },
     {
+      id: 'infrastructure',
       header: t('nav.groupInfrastructure'),
       items: [
         { id: 'destinations', label: t('nav.destinations'), icon: Server },
@@ -88,18 +115,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ],
     },
     {
+      id: 'automation',
       header: t('nav.groupAutomation'),
       items: [
         { id: 'templates', label: t('nav.templates'), icon: Layers },
       ],
     },
     {
+      id: 'operations',
       header: t('nav.groupOperations'),
       items: [
         { id: 'executions', label: t('nav.executions'), icon: Terminal },
       ],
     },
     {
+      id: 'system',
       header: t('nav.groupSystem'),
       items: [
         ...(isAdmin ? [{ id: 'users', label: t('nav.users'), icon: Users }] : []),
@@ -201,23 +231,48 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Navigation Links Area - Independently scrollable */}
         <nav className="flex-1 min-h-0 py-3 px-2 space-y-1 overflow-y-auto overflow-x-hidden">
-          {navGroups.map((group, groupIdx) => (
-            <div key={groupIdx} className="space-y-1">
-              {/* Group Header in Expanded Mode */}
-              {!collapsed || mobileOpen ? (
-                group.header && (
-                  <div className="px-3 pt-3 pb-1 text-[10px] font-mono tracking-widest text-[#475569] font-bold uppercase select-none">
-                    {group.header}
-                  </div>
-                )
-              ) : (
-                /* Subtle Divider in Collapsed Mode */
-                group.header && <div className="border-t border-[#141e30] my-2 mx-2" />
-              )}
+          {navGroups.map((group, groupIdx) => {
+            const isSectionCollapsed = Boolean(group.id && collapsedSections[group.id]);
 
-              {group.items.map((item) => {
-                const Icon = item.icon;
-                const isActive = currentTab === item.id;
+            return (
+              <div key={groupIdx} className="space-y-1">
+                {/* Group Header in Expanded Mode */}
+                {!collapsed || mobileOpen ? (
+                  group.header && (
+                    group.id ? (
+                      <button
+                        type="button"
+                        onClick={() => toggleSection(group.id!)}
+                        aria-expanded={!isSectionCollapsed}
+                        aria-controls={`section-${group.id}`}
+                        className="w-full flex items-center justify-between px-3 pt-3 pb-1 text-[10px] font-mono tracking-widest text-[#475569] hover:text-[#94a3b8] font-bold uppercase select-none transition-colors cursor-pointer rounded-md focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[var(--cyber-primary)] group"
+                      >
+                        <span>{group.header}</span>
+                        <span className="text-[#475569] group-hover:text-[#94a3b8] transition-colors">
+                          {isSectionCollapsed ? (
+                            <ChevronRight size={12} className="shrink-0" />
+                          ) : (
+                            <ChevronDown size={12} className="shrink-0" />
+                          )}
+                        </span>
+                      </button>
+                    ) : (
+                      <div className="px-3 pt-3 pb-1 text-[10px] font-mono tracking-widest text-[#475569] font-bold uppercase select-none">
+                        {group.header}
+                      </div>
+                    )
+                  )
+                ) : (
+                  /* Subtle Divider in Collapsed Mode */
+                  group.header && !isSectionCollapsed && <div className="border-t border-[#141e30] my-2 mx-2" />
+                )}
+
+                {/* Group Items (hidden if section is collapsed) */}
+                {!isSectionCollapsed && (
+                  <div id={group.id ? `section-${group.id}` : undefined} className="space-y-1">
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = currentTab === item.id;
 
                 if (collapsed && !mobileOpen) {
                   /* COLLAPSED NAV ITEM: Strictly Centered Icon Button */
@@ -270,9 +325,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </button>
                 );
               })}
-            </div>
-          ))}
-        </nav>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </nav>
 
         {/* Bottom User & Language Area */}
         {collapsed && !mobileOpen ? (
