@@ -85,10 +85,10 @@ export const AboutView: React.FC = () => {
               {t('about.versionTitle')} Oficial
             </span>
             <span className="text-xl sm:text-2xl font-black text-[var(--cyber-primary)] text-glow-primary tracking-tight block mt-0.5">
-              v{about?.version || '1.0.0'}
+              v{about?.version || '1.0.1'}
             </span>
             <span className="text-[10px] text-[#64748b] block mt-1">
-              Publicación: {about?.releaseDate || '2026-10-05'}
+              Publicación: {about?.releaseDate || '2026-10-06'}
             </span>
           </div>
         </div>

@@ -187,10 +187,10 @@ router.get('/health', (req, res) => {
 router.get('/about', (req, res) => {
   let versionInfo = {
     name: 'ELYS',
-    version: '1.0.0',
+    version: '1.0.1',
     description: 'Advanced Task Scheduler',
     author: 'Adrián Palma',
-    releaseDate: '2026-10-05',
+    releaseDate: '2026-10-06',
   };
 
   try {

@@ -90,25 +90,123 @@ async function runTests() {
   assert(bulkRes.status === 403, 'Operador recibe 403 Forbidden al intentar acción masiva delete_permanent');
   db.prepare('DELETE FROM users WHERE id = ?').run(operatorUserId);
 
-  // TEST 5: Rate Limiting on Login
-  console.log('\n5. Probando Rate Limiter en /api/auth/login...');
+  // TEST 5: Rate Limiting & 5-Minute Lockout on Login
+  console.log('\n5. Probando Rate Limiter y Bloqueo de 5 Minutos en /api/auth/login...');
+  const testIp = '198.51.100.42';
   let rateLimited = false;
-  let retryAfterHeader = null;
-  // Trigger attempts
-  for (let i = 0; i < 12; i++) {
+  let retryAfterHeader: string | null = null;
+  let errorMessage = '';
+
+  for (let i = 1; i <= 12; i++) {
     const res = await fetch(`${BASE_URL}/api/auth/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Forwarded-For': testIp,
+      },
       body: JSON.stringify({ username: 'invalid_user_rate_test', password: 'wrong_password' }),
     });
+
     if (res.status === 429) {
       rateLimited = true;
       retryAfterHeader = res.headers.get('retry-after');
+      const body = (await res.json()) as any;
+      errorMessage = body.error || '';
       break;
     }
   }
+
   assert(rateLimited, 'Rate limiter bloquea intentos repetidos con código 429 Too Many Requests');
   assert(Boolean(retryAfterHeader), 'Header Retry-After devuelto en respuesta 429');
+
+  const retryAfterSec = parseInt(retryAfterHeader || '0', 10);
+  assert(
+    retryAfterSec > 0 && retryAfterSec <= 300,
+    `LOCKOUT_DURATION = 5 MINUTOS (Retry-After devuelto: ${retryAfterSec}s <= 300s)`
+  );
+  assert(
+    errorMessage.includes('5 minutos'),
+    `Mensaje de error indica 5 minutos de espera ("${errorMessage}")`
+  );
+
+  const blockedDuringLockout = await fetch(`${BASE_URL}/api/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Forwarded-For': testIp,
+    },
+    body: JSON.stringify({ username: 'admin', password: 'AnyPassword' }),
+  });
+  assert(
+    blockedDuringLockout.status === 429,
+    'Petición durante el periodo de bloqueo temporal sigue bloqueada (429)'
+  );
+
+  // TEST 6: Normal Login, Dashboard access & Logout/Login Flow
+  console.log('\n6. Probando Login Normal, Acceso a Dashboard y Flujo Logout/Login...');
+  const normalIp = '198.51.100.99';
+  const normalUserId = crypto.randomUUID();
+  const bcrypt = await import('bcryptjs');
+  const testPassword = 'TestPassword2026!';
+  const testPasswordHash = bcrypt.default.hashSync(testPassword, 10);
+  const testUserTime = new Date().toISOString();
+
+  db.prepare(`
+    INSERT INTO users (id, username, email, password_hash, role, is_active, must_change_password, created_at, updated_at)
+    VALUES (?, 'test_normal_user', 'test_normal@elys.local', ?, 'admin', 1, 0, ?, ?)
+  `).run(normalUserId, testPasswordHash, testUserTime, testUserTime);
+
+  try {
+    // 1. Initial Login
+    const loginRes1 = await fetch(`${BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Forwarded-For': normalIp,
+      },
+      body: JSON.stringify({ username: 'test_normal_user', password: testPassword }),
+    });
+    const loginData1 = (await loginRes1.json()) as any;
+    assert(loginRes1.status === 200 && Boolean(loginData1.token), 'Login con credenciales válidas permite acceso (200 OK)');
+
+    // 2. Access Dashboard with Token
+    const dashRes1 = await fetch(`${BASE_URL}/api/system/dashboard`, {
+      headers: {
+        Authorization: `Bearer ${loginData1.token}`,
+        'X-Forwarded-For': normalIp,
+      },
+    });
+    assert(dashRes1.status === 200, 'Acceso al Dashboard con token válido permitido (200 OK)');
+
+    // 3. Logout check (unauthenticated request receives 401)
+    const logoutCheck = await fetch(`${BASE_URL}/api/auth/me`, {
+      headers: { 'X-Forwarded-For': normalIp },
+    });
+    assert(logoutCheck.status === 401, 'Sesión cerrada: acceso sin token denegado (401 Unauthorized)');
+
+    // 4. Re-login
+    const loginRes2 = await fetch(`${BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Forwarded-For': normalIp,
+      },
+      body: JSON.stringify({ username: 'test_normal_user', password: testPassword }),
+    });
+    const loginData2 = (await loginRes2.json()) as any;
+    assert(loginRes2.status === 200 && Boolean(loginData2.token), 'Login posterior tras logout exitoso (200 OK)');
+
+    // 5. Access Dashboard Again
+    const dashRes2 = await fetch(`${BASE_URL}/api/system/dashboard`, {
+      headers: {
+        Authorization: `Bearer ${loginData2.token}`,
+        'X-Forwarded-For': normalIp,
+      },
+    });
+    assert(dashRes2.status === 200, 'Acceso al Dashboard tras segundo login permitido (200 OK)');
+  } finally {
+    db.prepare('DELETE FROM users WHERE id = ?').run(normalUserId);
+  }
 
   console.log('\n==============================================');
   console.log(`Resumen: ${passed} pasados, ${failed} fallidos`);

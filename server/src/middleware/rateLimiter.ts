@@ -80,11 +80,11 @@ export function createRateLimiter(options: RateLimitOptions) {
 }
 
 // Pre-configured rate limiters
-// Auth limiter: Max 10 attempts per 15 minutes per IP
+// Auth limiter: Max 10 attempts per 5 minutes per IP
 export const authRateLimiter = createRateLimiter({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 5 * 60 * 1000,
   max: 10,
-  message: 'Demasiados intentos fallidos de autenticación. Por favor, espere 15 minutos.',
+  message: 'Demasiados intentos fallidos de autenticación. Por favor, espere 5 minutos.',
 });
 
 // Setup limiter: Max 5 attempts per 15 minutes

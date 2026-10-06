@@ -37,7 +37,7 @@ function generateBackupData(createdBy: string, type: 'full' | 'auto_safety' = 'f
     id,
     format: 'ELYS_BACKUP',
     version: 1,
-    elys_version: '1.0.0',
+    elys_version: '1.0.1',
     created_at: now,
     created_by: createdBy,
     type,
